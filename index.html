@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./public/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <title>Productivity Dashboard</title>
+</head>
+
+<body>
+    <div id="main">
+        <nav>
+            <div class="nav-in">
+                <h2>Productivity DashBoard</h2>
+                <div class="theme">
+                    <!-- <i class="ri-sun-line"></i> -->
+                    <h4>Change Theme</h4>
+                </div>
+            </div>
+        </nav>
+
+        <section class="allElems">
+            <header>
+                <div class="header1">
+                    <h2 class="time"></h2>
+                    <h1 class="day"></h1>
+                    <h4 class="place"></h4>
+                </div>
+                <div class="header2">
+                    <h2 class="temp"></h2>
+                    <h4 class="condition"></h4>
+                    <h3 class="pressure"></h3>
+                    <h3 class="humidity"></h3>
+                    <h3 class="wind"></h3>
+                </div>
+            </header>
+
+            <div class="allFeatures">
+
+                <div class="todo elem" id="0">
+                    <img src="https://i.pinimg.com/736x/6b/8d/80/6b8d805a196e1d81b79eec2b8e683f79.jpg" alt="">
+                    <!-- <h2>To Do List</h2> -->
+                </div>
+                <div class="daily elem" id="1">
+                    <img src="https://i.pinimg.com/1200x/57/12/4e/57124e4b924fc6da43ba5554858734bd.jpg" alt="">
+                    <!-- <h2>Daily Planner</h2> -->
+                </div>
+                <div class="motivation elem" id="2">
+                    <img src="https://i.pinimg.com/736x/b3/b4/07/b3b407a9d1ad6390a9ac589ade33de02.jpg" alt="">
+                    <!-- <h2>Motivation</h2> -->
+                </div>
+                <div class="pmomodoro elem" id="3">
+                    <img src="https://i.pinimg.com/736x/16/c1/7a/16c17a70a38d1d2e04aa472d77acb4bd.jpg" alt="">
+                    <!-- <h2>Pomodoro Timer</h2> -->
+                </div>
+                <div class="notes elem" id="4">
+                    <img src="https://i.pinimg.com/736x/cc/f0/32/ccf032f2b1bca1ab019421966b28858b.jpg" alt="">
+                    <!-- <h2>Quick Notes</h2> -->
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------>
+
+        <section class="fullElem todo-list-fullPage">
+            <button class="back">
+                <i class="ri-arrow-left-long-line"></i>
+            </button>
+            <h2>Your Personalized Task List</h2>
+            <div class="todo-container">
+                <div class="addTask">
+                    <form>
+                        <input id="task-input" type="text" placeholder="add a new task" name="task" required>
+                        <textarea placeholder="enter task details" name="description" id="task-description" rows="10"
+                            cols="30"></textarea>
+                        <div class="mark-imp">
+                            <input type="checkbox" name="" id="check">
+                            <label for="check">mark as important!</label>
+                        </div>
+                        <button>add task</button>
+                    </form>
+                </div>
+                <div class="allTask">
+                    <div class="task">
+                        <h5>Go to gym</h5>
+                        <!-- <p></p> -->
+                        <button>mark as completed</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------>
+
+        <section class="fullElem daily-planner-fullPage">
+            <button class="back">
+                <i class="ri-arrow-left-long-line"></i>
+            </button>
+            <h2>Plan your day to be more productive</h2>
+
+            <div class="day-planner">
+
+            </div>
+        </section>
+
+        <!------------------------------------------------------------>
+
+        <section class="fullElem motivation-fullPage">
+            <button class="back">
+                <i class="ri-arrow-left-long-line"></i>
+            </button>
+            <div class="motivation-container">
+                <div class="motivation-wrapper">
+                    <img src="/public/icons-quote.png" alt="">
+                    <div class="motivation-header">
+                        <h2>Quote of the day</h2>
+                    </div>
+                    <div class="motivation-content">
+                        <h2></h2>
+                    </div>
+                    <div class="motivation-lower">
+                        <h2></h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------>
+
+        <section class="fullElem pomodoro-fullPage">
+            <button class="back">
+                <i class="ri-arrow-left-long-line"></i>
+            </button>
+            <h2>Study with me!</h2>
+            <h4 class="session">Work Session</h4>
+
+            <div class="pomodoro-timer">
+                <h1>25:00</h1>
+                <button class="start-timer">Start</button>
+                <button class="pause-timer">Pause</button>
+                <button class="reset-timer">Reset</button>
+            </div>
+        </section>
+
+        <!------------------------------------------------------------>
+
+        <section class="fullElem quick-notes-fullPage">
+            <button class="back">
+                <i class="ri-arrow-left-long-line"></i>
+            </button>
+
+            <h2>Quick Notes</h2>
+
+            <div class="notes-container">
+
+                <div class="add-note-panel">
+                    <form id="noteForm">
+                        <input id="noteTitle" type="text" placeholder="note title" required>
+
+                        <textarea id="noteContent" placeholder="write your note here" required></textarea>
+
+                        <button type="submit" id="addNoteBtn">Add Note</button>
+                    </form>
+                </div>
+
+
+
+                <div class="notes-display" id="notesContainer">
+
+                </div>
+
+            </div>
+        </section>
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
