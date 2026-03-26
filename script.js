@@ -1,3 +1,27 @@
+async function fetchQuote() {
+    var quote = document.querySelector(".motivation-content h2");
+    var author = document.querySelector(".motivation-lower h2");
+
+    // **loading state 
+    quote.textContent = "Loading...";
+    author.textContent = "";
+    try {
+        let response = await fetch("https://dummyjson.com/quotes/random");
+
+        if (!response.ok) throw new Error("API failed");
+
+        let data = await response.json();
+
+        quote.textContent = data.quote;
+        author.textContent = data.author;
+
+    } catch (err) {
+        console.error(err);
+        quote.textContent = "Failed to load quote";
+        author.textContent = "";
+    }
+}
+
 function openFeature() {
     var allElems = document.querySelectorAll(".elem");
     var allFullElements = document.querySelectorAll(".fullElem");
@@ -5,9 +29,11 @@ function openFeature() {
 
     allElems.forEach((elem) => {
         elem.addEventListener("click", () => {
-            // console.log(elem);
-            console.log(allFullElements[elem.id]);
             allFullElements[elem.id].style.display = "block";
+
+            if (elem.id == "2") {
+                fetchQuote(); // call again when motivation opens
+            }
         })
     })
 
@@ -120,18 +146,6 @@ dailyPlanner();
 
 
 function motivationalQuote() {
-    var quote = document.querySelector(".motivation-content h2");
-    var author = document.querySelector(".motivation-lower h2");
-    async function fetchQuote() {
-        const url = `https://corsproxy.io/?https://zenquotes.io/api/random&_=${Date.now()}`;
-
-        let response = await fetch(url);
-        let data = await response.json();
-
-        quote.innerHTML = data[0].q;
-        author.innerHTML = data[0].a;
-    }
-
     fetchQuote();
 }
 motivationalQuote();
