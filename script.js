@@ -275,18 +275,67 @@ function WeatherFunctionality() {
 
     }
 
-    async function weatherAPI() {
-        let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
-        data = await response.json();
+    // async function weatherAPI() {
+    //     let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+    //     data = await response.json();
 
-        place.innerHTML = `${data.location.name}, ${data.location.region}`
-        temp.innerHTML = `${data.current.temp_c}°C`
-        condition.innerHTML = `${data.current.condition.text}`
-        pressure.innerHTML = `Pressure : ${data.current.pressure_mb} mb`
-        humidity.innerHTML = `Humidity : ${data.current.humidity}`
-        wind.innerHTML = `Wind : ${data.current.wind_kph} km/h`
+    //     place.innerHTML = `${data.location.name}, ${data.location.region}`
+    //     temp.innerHTML = `${data.current.temp_c}°C`
+    //     condition.innerHTML = `${data.current.condition.text}`
+    //     pressure.innerHTML = `Pressure : ${data.current.pressure_mb} mb`
+    //     humidity.innerHTML = `Humidity : ${data.current.humidity}`
+    //     wind.innerHTML = `Wind : ${data.current.wind_kph} km/h`
+    // }
+    getUserLocation();
+    async function weatherAPI(lat, lon) {
+        try {
+            let url;
+
+            if (lat && lon) {
+                url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lon}`;
+            } else {
+                url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=Kolkata`;
+            }
+
+            let response = await fetch(url);
+
+            if (!response.ok) throw new Error("Weather API failed");
+
+            let data = await response.json();
+
+            place.textContent = `${data.location.name}, ${data.location.region}`;
+            temp.textContent = `${data.current.temp_c}°C`;
+            condition.textContent = data.current.condition.text;
+            pressure.textContent = `Pressure : ${data.current.pressure_mb} mb`;
+            humidity.textContent = `Humidity : ${data.current.humidity}`;
+            wind.textContent = `Wind : ${data.current.wind_kph} km/h`;
+
+        } catch (err) {
+            console.error(err);
+            place.textContent = "Weather not available";
+        }
     }
-    weatherAPI();
+    function getUserLocation() {
+        if (!navigator.geolocation) {
+            console.log("Geolocation not supported");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                console.log(`Your current longitude ${lon} and Latitude ${lat}`);
+                weatherAPI(lat, lon);
+            },
+            (error) => {
+                console.error("Location access denied", error);
+                // * fallback to default city
+                weatherAPI(null, null);
+            }
+        );
+    }
 
 
     let date = null;
