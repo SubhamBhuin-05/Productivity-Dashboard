@@ -276,7 +276,7 @@ function WeatherFunctionality() {
     }
 
     async function weatherAPI() {
-        let response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+        let response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
         data = await response.json();
 
         place.innerHTML = `${data.location.name}, ${data.location.region}`
